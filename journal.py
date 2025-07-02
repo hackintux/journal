@@ -4,7 +4,7 @@ from datetime import datetime, date
 import random
 
 # ---- TITRE ----
-st.title("🌟 Mon Journal Intime avec Coach Statique 🌟")
+st.title("❤️ Journal Intime pour la femme que j'aime ❤️")
 st.write("Un espace pour te confier et recevoir un boost quotidien !")
 
 # ---- LISTE DE PHRASES MOTIVANTES ----
@@ -18,7 +18,8 @@ boosts = [
     "⚡ Tu es plus fort que tes peurs.",
     "🎯 Focalise-toi sur ce qui compte vraiment.",
     "⛰️ Les sommets paraissent hauts jusqu'à ce qu'on les atteigne.",
-    "🌈 Chaque échec est une leçon, chaque succès une fête."
+    "🌈 Chaque échec est une leçon, chaque succès une fête.",
+    "🦃 Tu es peut-etre une Dinde, mais tu es MA grosse dinde."
 ]
 
 # ---- SECTION MESSAGE MOTIVATION ----
