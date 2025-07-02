@@ -1,33 +1,30 @@
 import streamlit as st
 import os
 from datetime import datetime
-from openai import OpenAI
-
-# ---- CONFIG ----
-# Initialise le client OpenAI avec ta clé API (définie dans tes secrets Streamlit Cloud)
-client = OpenAI()
+import random
 
 # ---- TITRE ----
-st.title("🌟 Mon Journal Intime avec Coach IA 🌟")
+st.title("🌟 Mon Journal Intime avec Coach Statique 🌟")
 st.write("Un espace pour te confier et recevoir un boost quotidien !")
+
+# ---- LISTE DE PHRASES MOTIVANTES ----
+boosts = [
+    "💪 Crois en toi, chaque jour est une victoire.",
+    "🚀 Même les plus grands ont commencé petits.",
+    "🌱 Cultive ta persévérance, elle est ton super-pouvoir.",
+    "🔥 Ce que tu fais aujourd'hui construit ton demain.",
+    "🌟 Rappelle-toi pourquoi tu as commencé.",
+    "🏆 Un pas après l'autre mène toujours plus loin.",
+    "⚡ Tu es plus fort que tes peurs.",
+    "🎯 Focalise-toi sur ce qui compte vraiment.",
+    "⛰️ Les sommets paraissent hauts jusqu'à ce qu'on les atteigne.",
+    "🌈 Chaque échec est une leçon, chaque succès une fête."
+]
 
 # ---- SECTION MESSAGE MOTIVATION ----
 if st.button("✨ Génère mon boost du jour !"):
     with st.spinner("L'IA réfléchit à ton message motivant..."):
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "Tu es un coach de motivation optimiste, bienveillant et pragmatique."
-                },
-                {
-                    "role": "user",
-                    "content": "Donne-moi un boost pour aujourd'hui !"
-                }
-            ]
-        )
-        boost = response.choices[0].message.content
+        boost = random.choice(boosts)
         st.success(boost)
 
 # ---- SECTION JOURNAL ----
