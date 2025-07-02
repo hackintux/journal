@@ -1,12 +1,11 @@
-# fichier : app_journal_ia.py
 import streamlit as st
 import os
 from datetime import datetime
-import openai
+from openai import OpenAI
 
 # ---- CONFIG ----
-# Place ici ta clé API OpenAI ou utilise une variable d'environnement
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Initialise le client OpenAI avec ta clé API (définie dans tes secrets Streamlit Cloud)
+client = OpenAI()
 
 # ---- TITRE ----
 st.title("🌟 Mon Journal Intime avec Coach IA 🌟")
@@ -15,11 +14,17 @@ st.write("Un espace pour te confier et recevoir un boost quotidien !")
 # ---- SECTION MESSAGE MOTIVATION ----
 if st.button("✨ Génère mon boost du jour !"):
     with st.spinner("L'IA réfléchit à ton message motivant..."):
-        response = openai.ChatCompletion.create(
-            model="gpt-4o",  # utilise un modèle adapté à ta clé API
+        response = client.chat.completions.create(
+            model="gpt-4o",
             messages=[
-                {"role": "system", "content": "Tu es un coach de motivation optimiste et bienveillant."},
-                {"role": "user", "content": "Donne-moi un boost pour aujourd'hui !"}
+                {
+                    "role": "system",
+                    "content": "Tu es un coach de motivation optimiste, bienveillant et pragmatique."
+                },
+                {
+                    "role": "user",
+                    "content": "Donne-moi un boost pour aujourd'hui !"
+                }
             ]
         )
         boost = response.choices[0].message.content
